@@ -12,7 +12,7 @@ export const inserWorkspace = async (FormData) => {
     }
 
     // Send the POST request
-    const response = await fetch('http://96.9.81.187:8080/api/v1/task/workspace/d05221fe-5120-4530-a60f-eb5f29ffa946', {
+    const response = await fetch('http://96.9.81.187:8080/api/v1/workspace', {
       method: "POST",
       headers: {
         Authorization: `Bearer ${session?.payload?.token}`,

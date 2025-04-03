@@ -1,9 +1,9 @@
-"use client";
+"use client"
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
 import { inserWorkspace } from "../../../../service/insertWorkspace";
-
 export default function NewTaskPopup() {
+
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     taskTitle: "",
@@ -31,12 +31,13 @@ export default function NewTaskPopup() {
 
   return (
     <div className="relative">
+     
       {/* Button to open popup */}
       <button
         onClick={() => setIsOpen(true)}
         className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition"
       >
-        <Plus size={18} className="mr-2" /> New Task
+        <Plus size={18} className="mr-2" /> New Task 
       </button>
 
       {/* Popup Modal */}

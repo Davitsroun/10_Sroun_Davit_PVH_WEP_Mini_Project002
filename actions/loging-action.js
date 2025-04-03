@@ -1,6 +1,7 @@
 "use server"
 
 import { signIn } from "@/auth";
+import { redirect } from "next/navigation";
 
 
 export const logingAction = async(formData) =>{
@@ -11,6 +12,7 @@ export const logingAction = async(formData) =>{
         password,
         redirect: false,
     });
+    
    
 
 }

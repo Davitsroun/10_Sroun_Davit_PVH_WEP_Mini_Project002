@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
-import { inserWorkspace } from "../../../../service/insertWorkspace";
+import { updateworkspace } from "../../../../service/updateworkspaceByid";
 
 export default function Update() {
+  
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     taskTitle: "",
@@ -16,18 +17,17 @@ export default function Update() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async () => {
-    // Log the form data just before submitting
-    // console.log("Submitted Data:", formData);
-    // try {
-    //   // Call your insertWorkspace function to handle the data submission
-    //   await inserWorkspace(formData);
-    //   setIsOpen(false); // Close the modal
-    //   setFormData({ taskTitle: "", taskDetails: "", tag: "", endDate: "" }); // Reset form data after submission
-    // } catch (error) {
-    //   console.error("Error inserting workspace:", error);
-    // }
-  };
+  // const handleSubmit = async () => {
+  //   console.log("Submitted Data:", formData);
+  //   try {
+  //     // Call your insertWorkspace function to handle the data submission
+  //     await updateworkspace(formData);
+  //     setIsOpen(false); // Close the modal
+  //     setFormData({ taskTitle: "", taskDetails: "", tag: "", endDate: "" }); // Reset form data after submission
+  //   } catch (error) {
+  //     console.error("Error inserting workspace:", error);
+  //   }
+  // };
 
   return (
     <div className="relative">
@@ -77,16 +77,6 @@ export default function Update() {
                 className="w-full p-2 border rounded h-20"
               ></textarea>
 
-
-              {/* <input
-                type="text"
-                name="tag"
-                placeholder="Tag"
-                value={formData.tag}
-                onChange={handleChange}
-                className="w-full p-2 border rounded"
-              />
-               */}
               <select
                 name="tasks"
                 id="tasks"

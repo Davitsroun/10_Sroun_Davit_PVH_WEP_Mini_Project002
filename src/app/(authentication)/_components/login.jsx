@@ -6,9 +6,6 @@ import { KeyRound, Mail } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { logingAction } from "../../../../actions/loging-action";
-import Head from "next/head";
-import Header from "@/app/(homepage)/_components/Header1";
-
 export default function LoginComponent() {
 
   return (

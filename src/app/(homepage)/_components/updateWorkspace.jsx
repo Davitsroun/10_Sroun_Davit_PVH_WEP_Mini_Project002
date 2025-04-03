@@ -1,28 +1,21 @@
 "use client";
 import { useState } from "react";
 import { IoIosAdd, IoIosMore } from "react-icons/io";
+import { updateworkspace, updateworkspaceyid } from "../../../../service/updateworkspaceByid";
 
-export default function UpdateWorkspaec() {
+export default function UpdateWorkspaec({workspaceId}) {
+  console.log("Workspace ID passed to UpdateWorkspace:", workspaceId);
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [submittedValue, setSubmittedValue] = useState("");
+
 
   const handleSubmit = (event) => {
     event.preventDefault(); 
     // Prevent the default form submission behavior
 
     // Pass the input value to the inserWorkspace function
-    // inserWorkspace(inputValue)
-    //   .then((response) => {
-    //     // Optionally handle the response here if needed
-    //     setSubmittedValue(inputValue);
-    //     setIsOpen(false); // Close the popup after submission
-    //     setInputValue(""); // Reset input value after submission
-    //   })
-    //   .catch((error) => {
-    //     // Optionally handle any errors here
-    //     console.error("Error inserting workspace:", error);
-    //   });
+    updateworkspaceyid({inputValue,workspaceId})
+     
   };
 
   return (

@@ -2,8 +2,8 @@ import Logo from "@/components/logo";
 import "../globals.css";
 import Sidebarecom from "./_components/Sidebarecom";
 import Header from "./_components/Header1";
-import Header2 from "./_components/Header2";
 import NewTaskPopup from "./_components/AsideAddTask";
+import Header2 from "./_components/Header2";
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
@@ -23,20 +23,18 @@ export default function RootLayout({ children }) {
           <div className="row-span-1 ">
             <Header />
           </div>
-          <></>
-       
-          
-            <div className="row-span-9  overflow-auto relative">
+          <div className="row-span-1 ">
+            <Header2 />
+          </div>
+          <></>         
+            <div className="row-span-8  overflow-auto relative">
               {children}
             </div>
           
           <div className="absolute bottom-5 right-5">
               <NewTaskPopup />
             </div>
-
-
         </div>
-
       </div>
       </body>
     </html>

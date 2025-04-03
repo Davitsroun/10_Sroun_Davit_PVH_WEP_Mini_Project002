@@ -3,7 +3,6 @@ import { auth } from "@/auth";
 export async function nameService() {
 
     const session = await auth();
-    console.log("session sidebare", session?.payload?.token)
     const res   = await fetch(
         `http://96.9.81.187:8080/api/v1/user`,
         {
