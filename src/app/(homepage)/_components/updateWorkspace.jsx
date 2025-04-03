@@ -1,27 +1,28 @@
 "use client";
 import { useState } from "react";
-import { inserWorkspace } from "../../service/insertWorkspace";
+import { IoIosAdd, IoIosMore } from "react-icons/io";
 
-export default function PopupButton() {
+export default function UpdateWorkspaec() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [submittedValue, setSubmittedValue] = useState("");
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault(); 
+    // Prevent the default form submission behavior
 
     // Pass the input value to the inserWorkspace function
-    inserWorkspace(inputValue)
-      .then((response) => {
-        // Optionally handle the response here if needed
-        setSubmittedValue(inputValue);
-        setIsOpen(false); // Close the popup after submission
-        setInputValue(""); // Reset input value after submission
-      })
-      .catch((error) => {
-        // Optionally handle any errors here
-        console.error("Error inserting workspace:", error);
-      });
+    // inserWorkspace(inputValue)
+    //   .then((response) => {
+    //     // Optionally handle the response here if needed
+    //     setSubmittedValue(inputValue);
+    //     setIsOpen(false); // Close the popup after submission
+    //     setInputValue(""); // Reset input value after submission
+    //   })
+    //   .catch((error) => {
+    //     // Optionally handle any errors here
+    //     console.error("Error inserting workspace:", error);
+    //   });
   };
 
   return (
@@ -31,12 +32,7 @@ export default function PopupButton() {
         onClick={() => setIsOpen(true)}
         className="p-4 text-2xl"
       >
-        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15.53 12H16.54" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M8.54004 12H12.35" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M12.54 16V8" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M2.54004 13.04V15C2.54004 20 4.54004 22 9.54004 22H15.54C20.54 22 22.54 20 22.54 15V9C22.54 4 20.54 2 15.54 2H9.54004C4.54004 2 2.54004 4 2.54004 9" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <IoIosMore/>
 
       </button>
 
@@ -51,7 +47,7 @@ export default function PopupButton() {
 
           {/* Popup Modal */}
           <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl w-80">
-            <p className="text-lg font-semibold mb-2">Add new workspace:</p>
+            <p className="text-lg font-semibold mb-2">Udate Workspace workspace:</p>
 
             {/* Input Field */}
             <form onSubmit={handleSubmit}>

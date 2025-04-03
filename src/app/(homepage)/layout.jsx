@@ -6,7 +6,8 @@ import Header2 from "./_components/Header2";
 import NewTaskPopup from "./_components/AsideAddTask";
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
+      <body>
 
       <div className="grid grid-cols-6 h-screen  w-full  overflow-scroll ">
         <></>
@@ -23,14 +24,12 @@ export default function RootLayout({ children }) {
             <Header />
           </div>
           <></>
-          <div className="row-span-1 ">
-            <Header2 />
-          </div>
-          <body>
-            <div className="row-span-8  overflow-auto relative">
+       
+          
+            <div className="row-span-9  overflow-auto relative">
               {children}
             </div>
-          </body>
+          
           <div className="absolute bottom-5 right-5">
               <NewTaskPopup />
             </div>
@@ -39,6 +38,7 @@ export default function RootLayout({ children }) {
         </div>
 
       </div>
+      </body>
     </html>
   );
 }

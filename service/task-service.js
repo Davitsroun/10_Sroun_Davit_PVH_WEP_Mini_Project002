@@ -1,12 +1,12 @@
 
 import { auth } from "@/auth";
 
-export async function task() {
+export async function task(id) {
 
     const session = await auth();
 
     const res   = await fetch(
-        `http://96.9.81.187:8080/api/v1/tasks/workspace/d05221fe-5120-4530-a60f-eb5f29ffa946?pageNo=0&pageSize=10&sortBy=taskId&sortDirection=ASC`,
+        `http://96.9.81.187:8080/api/v1/tasks/workspace/${id}?pageNo=0&pageSize=10&sortBy=taskId&sortDirection=ASC`,
         {
             method: "GET",
             headers:{
@@ -15,6 +15,7 @@ export async function task() {
         }
     )
     const data = await res.json();
+
     return data.payload
     
 }

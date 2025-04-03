@@ -14,7 +14,6 @@ export async function logingService({email ,password}) {
     })
 
     const data = await res.json();
-    console.log("data", data)
     return data;
 
 }

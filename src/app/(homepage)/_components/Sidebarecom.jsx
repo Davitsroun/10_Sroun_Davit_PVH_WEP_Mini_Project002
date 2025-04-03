@@ -1,16 +1,26 @@
-
-import Logo from "@/components/logo";
+// "use client"
 import { Circle, LogOut, Pointer, Star } from "lucide-react";
 import React from "react";
-import { getSidebar } from "../../../../service/sidebar-service.";
-import { TbPoint } from "react-icons/tb";
-import { IoIosMore } from "react-icons/io";
-import Popup from "@/components/popup";
+// import { getSidebar } from "../../../../service/sidebar-service";
 import PopupButton from "@/components/popup";
+import Workspace from "./Worksapcecard";
+// import { useRouter } from "next/navigation";
+import { getSidebar } from "../../../../service/sidebar-service";
 export default async function Sidebarecom() {
-
+//    const [data, setData] = useState([]);
+//     useEffect(() => {
+//         console.log("use effect")
+//         async function workspaceData() {
+//             const workspace = await getSidebar();
+//             console.log("workspaceSide",workspace)
+//             setData(workspace)
+//         }
+//         workspaceData();
+//     }, [])
     const data = await getSidebar();
-
+    
+    // const router = useRouter();
+    console.log("workspace",data)
     return (<>
         <div className=" w-full h-screen ">
 
@@ -24,20 +34,23 @@ export default async function Sidebarecom() {
                 {data
                         .filter((item) => item.isFavorite == false) // Filter items where isFavorite is true
                         .map((item) => (
-                            <div key={item.workspaceId} className="flex justify-between bg-neutral-content rounded-lg">
-                                <div className="flex gap-3">
-                                    <TbPoint className="mt-1.5" />
-                                    <p>{item.workspaceName}</p>
-                                </div>
-                                <div>
-                                    <IoIosMore className="mt-2" />
-                                </div>
-                            </div>
+                            <Workspace key={item.workspaceId}  item={item}/>
+                        
+
+                            // <div key={item.workspaceId} className="flex justify-between bg-neutral-content rounded-lg">
+                            //     <div className="flex gap-3">
+                            //         <TbPoint className="mt-1.5" />
+                            //         <p>{item.workspaceName}</p>
+                            //     </div>
+                            //     <div>
+                            //         <IoIosMore className="mt-2" />
+                            //     </div>
+                            // </div>
                         ))}
                 </div>
             </div>
 
-            <div className=" w-full h-50  ">
+            <div className=" w-full h-50 mt-10  ">
                 <div className="flex justify-between">
                     <div> <p>Workspace</p></div>
                     <div>
@@ -49,15 +62,16 @@ export default async function Sidebarecom() {
                     {data
                         .filter((item) => item.isFavorite) // Filter items where isFavorite is true
                         .map((item) => (
-                            <div key={item.workspaceId} className="flex justify-between bg-neutral-content rounded-lg">
-                                <div className="flex gap-3">
-                                    <TbPoint className="mt-1.5" />
-                                    <p>{item.workspaceName}</p>
-                                </div>
-                                <div>
-                                    <IoIosMore className="mt-2" />
-                                </div>
-                            </div>
+                            // <div key={item.workspaceId} className="flex justify-between bg-neutral-content rounded-lg">
+                            //     <div className="flex gap-3">
+                            //         <TbPoint className="mt-1.5" />
+                            //         <p>{item.workspaceName}</p>
+                            //     </div>
+                            //     <div>
+                            //         <IoIosMore className="mt-2" />
+                            //     </div>
+                            // </div>
+                            <Workspace key={item.workspaceId} item={item}/>
                         ))}
                 </div>
             </div>

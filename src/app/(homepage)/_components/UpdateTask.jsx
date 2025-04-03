@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Plus, X } from "lucide-react";
 import { inserWorkspace } from "../../../../service/insertWorkspace";
 
-export default function NewTaskPopup() {
+export default function Update() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     taskTitle: "",
@@ -18,15 +18,15 @@ export default function NewTaskPopup() {
 
   const handleSubmit = async () => {
     // Log the form data just before submitting
-    console.log("Submitted Data:", formData);
-    try {
-      // Call your insertWorkspace function to handle the data submission
-      await inserWorkspace(formData);
-      setIsOpen(false); // Close the modal
-      setFormData({ taskTitle: "", taskDetails: "", tag: "", endDate: "" }); // Reset form data after submission
-    } catch (error) {
-      console.error("Error inserting workspace:", error);
-    }
+    // console.log("Submitted Data:", formData);
+    // try {
+    //   // Call your insertWorkspace function to handle the data submission
+    //   await inserWorkspace(formData);
+    //   setIsOpen(false); // Close the modal
+    //   setFormData({ taskTitle: "", taskDetails: "", tag: "", endDate: "" }); // Reset form data after submission
+    // } catch (error) {
+    //   console.error("Error inserting workspace:", error);
+    // }
   };
 
   return (

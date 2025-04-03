@@ -7,31 +7,29 @@ import {
 } from "@/components/ui/select";
 import { Clock, Ellipsis } from "lucide-react";
 import React from "react";
-import { task } from "../../service/task-service";
 
-export default async function CardComponent() {
-  const data = await task();
+export default async function CardComponent(item) {
+ 
   return (
   
     <div>
-    {data.length > 0 ? (
-      data.map((item) => (
+  
         <div key={item.taskId} className="border border-gray-300 rounded-xl mt-8">
           <div className="p-5">
             <div className="flex justify-between">
-              <h2 className="text-xl font-bold capitalize">{item.taskName}</h2>
+              <h2 className="text-xl font-bold capitalize">{item.taskTitle}</h2>
               <Ellipsis />
             </div>
 
             {/* Task details */}
             <p className="line-clamp-2 text-light-steel-blue my-2 h-12">
-              {item.description || "No description available"}
+              {item.taskTitle || "No description available"}
             </p>
 
             <div className="flex justify-between items-center mt-4">
               {/* Tag */}
               <p className="bg-purple-100 text-purple-500 py-1.5 px-3 rounded-lg">
-                {item.category || "DESIGN"}
+                {item. tag|| "DESIGN"}
               </p>
 
               {/* Status indicator */}
@@ -54,14 +52,10 @@ export default async function CardComponent() {
 
             {/* Date */}
             <p className="flex gap-3 text-light-steel-blue">
-              <Clock size={22} /> {item.dueDate || "Mar 23, 2025"}
+              <Clock size={22} /> {item.startDate || "Mar 23, 2025"}
             </p>
           </div>
         </div>
-      ))
-    ) : (
-      <p className="text-center text-gray-500 mt-4">No tasks available</p>
-    )}
   </div>
   );
 }
