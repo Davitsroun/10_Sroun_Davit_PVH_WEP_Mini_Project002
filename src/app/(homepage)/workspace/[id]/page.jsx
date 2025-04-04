@@ -2,19 +2,22 @@
 import CardComponent from '@/components/card'
 import React from 'react'
 import { task } from '../../../../../service/task-service';
-import Header2 from '../../_components/Header2';
+import NewTaskPopup from '../../_components/AsideAddTask';
 
 export default async function page({ params }) {
     const { id } =  await params;
    const data = await task(id);
-   
+   console.log("url", id)
+  
 
     return (
 
-
-        <div className='w-full h-full'>
-    
-            
+        <div className='h-full relative '>
+               <div className="absolute top-100 right-5">
+              <NewTaskPopup id={id}/>
+              </div>  
+    {data.length > 0 ? (
+         
             <div className=" grid grid-cols-3 gap-10 ml-10 mr-10 h-full ">
                 <div className=" flex flex-col gap-7 ">
                     <div className="w-full h-7 border-b-1 content-center text-watermelon-red ">
@@ -45,9 +48,13 @@ export default async function page({ params }) {
                                 <CardComponent key={item.taskId}  {...item} />
                     ))}
                 </div>
+             
 
             
             </div>
+             ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gray-50">No data available</div>
+              )}
             
         </div>
     )

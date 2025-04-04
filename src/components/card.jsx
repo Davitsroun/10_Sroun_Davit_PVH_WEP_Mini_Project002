@@ -1,3 +1,5 @@
+"use client"
+import Updatetask from "@/app/(homepage)/_components/UpdateTask";
 import {
   Select,
   SelectContent,
@@ -6,10 +8,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Clock, Ellipsis } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
-export default async function CardComponent(item) {
- 
+
+export default  function CardComponent(item) {
+
+
+  const[value,setvalue]= useState("")
+  const handlechang= (e)=>{
+   setvalue(e)
+  }
+ console.log("sataud",value)
   return (
   
     <div>
@@ -18,7 +27,7 @@ export default async function CardComponent(item) {
           <div className="p-5">
             <div className="flex justify-between">
               <h2 className="text-xl font-bold capitalize">{item.taskTitle}</h2>
-              <Ellipsis />
+              <Updatetask/>
             </div>
 
             {/* Task details */}
@@ -39,7 +48,7 @@ export default async function CardComponent(item) {
 
           {/* Progress */}
           <div className="flex justify-between items-center border-t border-t-gray-300 p-5">
-            <Select>
+            <Select onValueChange={(value) => handlechang(value) }>
               <SelectTrigger className="w-36 truncate border-watermelon-red text-watermelon-red">
                 <SelectValue placeholder={item.status || "NOT_STARTED"} />
               </SelectTrigger>
@@ -51,7 +60,7 @@ export default async function CardComponent(item) {
             </Select>
 
             {/* Date */}
-            <p className="flex gap-3 text-light-steel-blue">
+            <p className="flex gap-3 text-light-steel-blue  ">
               <Clock size={22} /> {item.startDate || "Mar 23, 2025"}
             </p>
           </div>

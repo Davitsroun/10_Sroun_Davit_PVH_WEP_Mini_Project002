@@ -1,21 +1,32 @@
 "use client";
 import { useState } from "react";
 import { IoIosAdd, IoIosMore } from "react-icons/io";
-import { updateworkspace, updateworkspaceyid } from "../../../../service/updateworkspaceByid";
+import { updateworkspaceyid } from "../../../../service/updateworkspaceByid";
 
-export default function UpdateWorkspaec({workspaceId}) {
-  console.log("Workspace ID passed to UpdateWorkspace:", workspaceId);
+export default function UpdateWorkspace({ workspaceId }) {
+
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);  // Optional: Loading state to handle async operation
 
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); 
-    // Prevent the default form submission behavior
+    setIsLoading(true); // Optional: Show loading indicator while submitting
 
-    // Pass the input value to the inserWorkspace function
-    updateworkspaceyid({inputValue,workspaceId})
-     
+    try {
+      // Pass the input value to the updateworkspaceyid function
+      await updateworkspaceyid({ inputValue, workspaceId });
+
+      // Close the modal after successful submission
+      setIsOpen(false);
+      setInputValue(""); // Optionally reset the input field
+
+    } catch (error) {
+      console.error("Error updating workspace:", error);
+    } finally {
+      setIsLoading(false); // Optional: Hide loading indicator
+    }
   };
 
   return (
@@ -25,8 +36,7 @@ export default function UpdateWorkspaec({workspaceId}) {
         onClick={() => setIsOpen(true)}
         className="p-4 text-2xl"
       >
-        <IoIosMore/>
-
+        <IoIosMore />
       </button>
 
       {/* Overlay and Popup */}
@@ -40,7 +50,7 @@ export default function UpdateWorkspaec({workspaceId}) {
 
           {/* Popup Modal */}
           <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl w-80">
-            <p className="text-lg font-semibold mb-2">Udate Workspace workspace:</p>
+            <p className="text-lg font-semibold mb-2">Update Workspace:</p>
 
             {/* Input Field */}
             <form onSubmit={handleSubmit}>
@@ -65,8 +75,9 @@ export default function UpdateWorkspaec({workspaceId}) {
                 <button
                   type="submit"
                   className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+                  disabled={isLoading} // Disable the submit button while loading
                 >
-                  Submit
+                  {isLoading ? "Submitting..." : "Submit"}
                 </button>
               </div>
             </form>

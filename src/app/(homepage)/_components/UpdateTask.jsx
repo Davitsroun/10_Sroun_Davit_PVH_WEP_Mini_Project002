@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Plus, X } from "lucide-react";
 import { updateworkspace } from "../../../../service/updateworkspaceByid";
 
-export default function Update() {
-  
+export default function Updatetask() {
+
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     taskTitle: "",
@@ -17,26 +17,31 @@ export default function Update() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // const handleSubmit = async () => {
-  //   console.log("Submitted Data:", formData);
-  //   try {
-  //     // Call your insertWorkspace function to handle the data submission
-  //     await updateworkspace(formData);
-  //     setIsOpen(false); // Close the modal
-  //     setFormData({ taskTitle: "", taskDetails: "", tag: "", endDate: "" }); // Reset form data after submission
-  //   } catch (error) {
-  //     console.error("Error inserting workspace:", error);
-  //   }
-  // };
+  const handleSubmit = async () => {
+    console.log("Submitted Data:", formData);
+    try {
+      // Call your insertWorkspace function to handle the data submission
+      //await updateworkspace(formData);
+      setIsOpen(false); // Close the modal
+      setFormData({ taskTitle: "", taskDetails: "", tag: "", endDate: "" }); // Reset form data after submission
+    } catch (error) {
+      console.error("Error inserting workspace:", error);
+    }
+  };
 
   return (
     <div className="relative">
       {/* Button to open popup */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition"
+        className="flex items-center px-4 py-2 transition"
       >
-        <Plus size={18} className="mr-2" /> New Task
+        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.16667 8.61835C3.25 8.61835 2.5 9.36835 2.5 10.285C2.5 11.2017 3.25 11.9517 4.16667 11.9517C5.08333 11.9517 5.83333 11.2017 5.83333 10.285C5.83333 9.36835 5.08333 8.61835 4.16667 8.61835Z" stroke="#94A3B8" strokeWidth="1.5" />
+          <path d="M15.8333 8.61835C14.9167 8.61835 14.1667 9.36835 14.1667 10.285C14.1667 11.2017 14.9167 11.9517 15.8333 11.9517C16.75 11.9517 17.5 11.2017 17.5 10.285C17.5 9.36835 16.75 8.61835 15.8333 8.61835Z" stroke="#94A3B8" strokeWidth="1.5" />
+          <path d="M8.33333 10.285C8.33333 11.2017 9.08333 11.9517 10 11.9517C10.9167 11.9517 11.6667 11.2017 11.6667 10.285C11.6667 9.36835 10.9167 8.61835 10 8.61835" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+
       </button>
 
       {/* Popup Modal */}

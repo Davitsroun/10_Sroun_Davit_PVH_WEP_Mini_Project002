@@ -1,8 +1,9 @@
 "use client"
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
-import { inserWorkspace } from "../../../../service/insertWorkspace";
-export default function NewTaskPopup() {
+import { insertask } from "../../../../service/insertTask";
+export default function NewTaskPopup({id}) {
+  console.log("data Newtask bt", id )
 
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -17,17 +18,30 @@ export default function NewTaskPopup() {
   };
 
   const handleSubmit = async () => {
-    // Log the form data just before submitting
-    console.log("Submitted Data:", formData);
+    // Log the formData before submission to ensure it is correctly populated
+    console.log("Form Data before submission:", formData);
+  
+    // Ensure the date is in the correct format (add time if missing)
+    const formattedEndDate = new Date(formData.endDate).toISOString();
+  
+    // Update the formData with the formatted date
+    const updatedFormData = {
+      ...formData,
+      endDate: formattedEndDate, // Ensure endDate is in ISO 8601 format with time
+    };
+  
+    console.log("Updated Form Data:", updatedFormData); // Log after updating the date
+  
     try {
-      // Call your insertWorkspace function to handle the data submission
-      await inserWorkspace(formData);
+      // Call insertask with updatedFormData
+      await insertask({ formData: updatedFormData, id });
       setIsOpen(false); // Close the modal
       setFormData({ taskTitle: "", taskDetails: "", tag: "", endDate: "" }); // Reset form data after submission
     } catch (error) {
-      console.error("Error inserting workspace:", error);
+      console.error("Error inserting task:", error);
     }
   };
+  
 
   return (
     <div className="relative">
@@ -95,15 +109,15 @@ export default function NewTaskPopup() {
                 onChange={(e) => setFormData({ ...formData, tag: e.target.value })}
                 className="w-full p-2 border rounded"
               >
-                <option value="design">Design</option>
-                <option value="homework">Homework</option>
-                <option value="assignment">Assignment</option>
-                <option value="deployment">Deployment</option>
-                <option value="git">Git</option>
-                <option value="database">Database</option>
-                <option value="mini_project">Mini Project</option>
-                <option value="documentation">Documentation</option>
-                <option value="feature">Feature</option>
+                <option value="Design">Design</option>
+                <option value="Homework">Homework</option>
+                <option value="Assignment">Assignment</option>
+                <option value="Deployment">Deployment</option>
+                <option value="Git">Git</option>
+                <option value="Database">Database</option>
+                <option value="Mini_project">Mini Project</option>
+                <option value="Documentation">Documentation</option>
+                <option value="Feature">Feature</option>
               </select>
 
 
